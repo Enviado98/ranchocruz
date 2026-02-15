@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rancho Cruz | Fotografía & Eventos Exclusivos</title>
-    <meta name="description" content="El escenario rústico perfecto para tus sesiones de fotos en LaBelle, FL.">
-
+    <title>Rancho Cruz | Rustic Elegance Venue</title>
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Librería de Animaciones (AOS) -->
+    <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <!-- Fuentes: Playfair Display & Lato -->
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
     
-    <!-- Iconos -->
+    <!-- Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <script>
@@ -27,16 +26,13 @@
                         serif: ['Playfair Display', 'serif'],
                     },
                     colors: {
-                        'cruz-gold': '#C5A059',      
-                        'cruz-dark': '#1C1917',      
-                        'cruz-wood': '#4A3B32',      
-                        'cruz-cream': '#F9F7F2',     
+                        'brand-gold': '#C5A059',      
+                        'brand-dark': '#1C1917',      
+                        'brand-cream': '#F5F5F0',     
+                        'brand-stone': '#44403C',
                     },
-                    boxShadow: {
-                        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    backgroundImage: {
+                        'texture': "url('https://www.transparenttextures.com/patterns/cream-paper.png')",
                     }
                 }
             }
@@ -44,244 +40,204 @@
     </script>
 
     <style>
-        /* Estilo Cristal (Glassmorphism) Pro */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+        /* Ajustes finos */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+        
+        .map-container iframe {
+            filter: grayscale(100%) invert(0%);
+            transition: filter 0.5s ease;
+        }
+        .map-container:hover iframe {
+            filter: grayscale(0%);
         }
 
-        .parallax {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-        /* Botón Dorado */
-        .btn-gold {
-            background: linear-gradient(135deg, #C5A059 0%, #A68545 100%);
+        /* Botón animado */
+        .btn-premium {
+            background-size: 200% auto;
+            background-image: linear-gradient(to right, #1C1917 0%, #44403C 51%, #1C1917 100%);
+            transition: 0.5s;
             color: white;
-            transition: all 0.3s ease;
         }
-        .btn-gold:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(197, 160, 89, 0.3);
+        .btn-premium:hover {
+            background-position: right center;
         }
     </style>
 </head>
-<body class="bg-cruz-cream text-gray-800 antialiased overflow-x-hidden selection:bg-cruz-gold selection:text-white">
+<body class="bg-brand-cream text-brand-dark antialiased overflow-x-hidden selection:bg-brand-gold selection:text-white">
 
-    <!-- NAV BAR -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 px-6 lg:px-12 flex justify-between items-center bg-transparent text-white border-b border-white/10">
-        <div class="flex items-center gap-3">
+    <!-- NAVBAR FLOTANTE -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6 px-6 lg:px-12 flex justify-between items-center bg-transparent">
+        <div class="flex items-center gap-3 glass-card px-4 py-2 rounded-full">
             <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/logo%20de%20su%20marca.jpg" 
-                 alt="Rancho Cruz Logo" 
-                 class="h-12 w-12 md:h-14 md:w-14 rounded-full border-2 border-cruz-gold shadow-lg object-cover">
-            <div>
-                <span class="font-serif text-xl md:text-2xl font-bold tracking-wider text-white drop-shadow-md block leading-none">RANCHO CRUZ</span>
-                <span class="text-[10px] uppercase tracking-[0.3em] text-cruz-gold font-bold opacity-90">Est. 2024</span>
-            </div>
+                 class="h-10 w-10 rounded-full object-cover border border-brand-gold">
+            <span class="font-serif text-lg font-bold tracking-widest text-brand-dark hidden md:block">RANCHO CRUZ</span>
         </div>
         
-        <div class="hidden md:flex gap-8 text-sm font-bold tracking-widest uppercase items-center">
-            <a href="#inicio" class="hover:text-cruz-gold transition-colors">Inicio</a>
-            <a href="#galeria" class="hover:text-cruz-gold transition-colors">Galería</a>
-            <a href="#ubicacion" class="hover:text-cruz-gold transition-colors">Ubicación</a>
-            <a href="tel:+12392983233" class="btn-gold px-6 py-2 rounded-sm text-xs font-bold shadow-lg flex items-center gap-2">
-                <i class="ph-bold ph-phone"></i> (239) 298-3233
-            </a>
+        <div class="glass-card px-6 py-2 rounded-full hidden md:flex gap-8 text-xs font-bold tracking-[0.2em] uppercase text-brand-stone">
+            <a href="#inicio" class="hover:text-brand-gold transition-colors">Inicio</a>
+            <a href="#galeria" class="hover:text-brand-gold transition-colors">Galería</a>
+            <a href="#contacto" class="hover:text-brand-gold transition-colors">Visítanos</a>
         </div>
+
+        <a href="https://wa.me/12392983233" class="btn-premium px-6 py-3 rounded-full text-xs font-bold tracking-widest shadow-lg flex items-center gap-2">
+            <i class="ph-bold ph-whatsapp-logo text-lg"></i>
+            <span class="hidden sm:inline">RESERVAR</span>
+        </a>
     </nav>
 
-    <!-- HERO SECTION CON INFORMACIÓN EN VIVO -->
-    <header id="inicio" class="relative min-h-[110vh] lg:min-h-screen flex items-center justify-center text-center parallax pt-20" 
-            style="background-image: url('https://raw.githubusercontent.com/Enviado98/ranchocruz/main/local.jpg');">
-        
-        <div class="absolute inset-0 bg-gradient-to-b from-cruz-dark/70 via-cruz-dark/40 to-cruz-cream"></div>
+    <!-- HERO SECTION (LIMPIO) -->
+    <header id="inicio" class="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
+        <!-- Fondo Parallax -->
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed scale-110" 
+             style="background-image: url('https://raw.githubusercontent.com/Enviado98/ranchocruz/main/local.jpg');">
+        </div>
+        <div class="absolute inset-0 bg-black/40"></div>
 
-        <div class="relative z-10 container mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="relative z-10 container mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center mt-20">
             
-            <!-- Texto Principal (Izquierda) -->
-            <div class="lg:col-span-7 text-left pl-4 lg:pl-12" data-aos="fade-right">
-                <div class="inline-flex items-center gap-2 px-3 py-1 border border-cruz-gold/50 rounded-full bg-black/30 backdrop-blur-sm mb-6">
-                    <span class="w-2 h-2 rounded-full bg-cruz-gold animate-pulse"></span>
-                    <span class="text-cruz-gold text-xs font-bold tracking-widest uppercase">LaBelle, Florida</span>
-                </div>
-                
-                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-white font-medium mb-6 leading-[1.1]">
-                    Rústico. <br> 
-                    <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-cruz-gold to-yellow-200">Elegante.</span> <br>
-                    Inolvidable.
+            <!-- Texto Principal -->
+            <div class="lg:col-span-7 text-white" data-aos="fade-up">
+                <p class="text-brand-gold font-bold tracking-[0.4em] uppercase text-xs mb-4 pl-1">LaBelle, Florida</p>
+                <h1 class="font-serif text-6xl md:text-8xl leading-tight mb-8">
+                    Donde la naturaleza <br>
+                    <span class="italic font-light opacity-90">abraza la elegancia.</span>
                 </h1>
-                
-                <p class="text-gray-200 text-lg max-w-xl mb-10 font-light border-l-2 border-cruz-gold pl-6">
-                    El escenario perfecto entre naturaleza y tradición para tus sesiones de fotos, Quinceañeras y eventos exclusivos.
+                <p class="text-lg text-gray-200 font-light max-w-lg leading-relaxed mb-10 border-l border-brand-gold pl-6">
+                    El escenario rústico definitivo. Caballos, graneros de madera y atardeceres dorados para tus momentos más importantes.
                 </p>
-                
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="https://wa.me/12392983233" class="btn-gold px-8 py-4 rounded-sm font-bold tracking-widest flex items-center justify-center gap-2 shadow-xl hover:scale-105 transition-transform">
-                        <i class="ph-bold ph-whatsapp-logo text-lg"></i> RESERVAR FECHA
-                    </a>
-                    <a href="#galeria" class="border border-white/40 bg-white/5 text-white backdrop-blur-sm px-8 py-4 rounded-sm font-bold tracking-widest hover:bg-white hover:text-cruz-dark transition-all duration-300">
-                        VER FOTOS
-                    </a>
+            </div>
+
+            <!-- Widget Flotante (Glass) -->
+            <div class="lg:col-span-5" data-aos="zoom-in" data-aos-delay="200">
+                <div class="glass-card rounded-2xl p-6 text-brand-dark max-w-sm mx-auto ml-auto transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-widest text-gray-500">Estado Actual</p>
+                            <h3 id="status-text" class="font-serif text-2xl font-bold mt-1">Verificando...</h3>
+                        </div>
+                        <span id="status-indicator" class="w-3 h-3 rounded-full bg-gray-300"></span>
+                    </div>
+                    
+                    <div class="flex items-center gap-4 border-t border-gray-200 pt-4">
+                        <div id="weather-icon" class="text-4xl text-brand-gold"><i class="ph-duotone ph-cloud"></i></div>
+                        <div>
+                            <p id="weather-temp" class="text-3xl font-bold">--°F</p>
+                            <p id="weather-desc" class="text-xs text-gray-500 uppercase font-bold">LaBelle, FL</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- GALERÍA MOSAICO (ARREGLADA) -->
+    <section id="galeria" class="py-32 px-4 md:px-8 max-w-[1600px] mx-auto">
+        <div class="text-center mb-20" data-aos="fade-up">
+            <span class="text-brand-gold tracking-[0.3em] uppercase text-xs font-bold">Portfolio</span>
+            <h2 class="font-serif text-5xl text-brand-dark mt-4">Memorias Eternas</h2>
+        </div>
+
+        <!-- Grid Asimétrico: No más fotos una debajo de otra aburridas -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[300px]">
+            
+            <!-- Foto 1 (Vertical Grande) -->
+            <div class="sm:col-span-1 lg:row-span-2 group relative rounded-xl overflow-hidden shadow-lg cursor-pointer" data-aos="fade-up">
+                <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/cliente3.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex items-end">
+                    <p class="text-white font-serif italic text-xl">Quinceañeras</p>
                 </div>
             </div>
 
-            <!-- TARJETA DE ESTADO & CLIMA (Derecha) -->
-            <div class="lg:col-span-5 w-full max-w-md mx-auto" data-aos="fade-up" data-aos-delay="200">
-                <div class="glass-panel rounded-lg overflow-hidden p-1">
-                    
-                    <!-- Header Tarjeta -->
-                    <div class="bg-white/50 border-b border-gray-200/50 p-5 flex justify-between items-center">
+            <!-- Foto 2 (Horizontal) -->
+            <div class="sm:col-span-1 group relative rounded-xl overflow-hidden shadow-lg cursor-pointer" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/cliente1.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+            </div>
+
+            <!-- Foto 3 (Horizontal) -->
+            <div class="sm:col-span-1 group relative rounded-xl overflow-hidden shadow-lg cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/cliente2.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+            </div>
+
+            <!-- Foto 4 (Vertical Pequeña o Grande según espacio) -->
+            <div class="sm:col-span-1 lg:row-span-2 group relative rounded-xl overflow-hidden shadow-lg cursor-pointer" data-aos="fade-up" data-aos-delay="300">
+                <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/fondo.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex items-end">
+                    <p class="text-white font-serif italic text-xl">El Rancho</p>
+                </div>
+            </div>
+
+            <!-- Foto 5 (Wide) -->
+            <div class="sm:col-span-2 group relative rounded-xl overflow-hidden shadow-lg cursor-pointer" data-aos="fade-up">
+                <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/cliente4.jpg" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex items-end">
+                    <p class="text-white font-serif italic text-xl">Sesiones Temáticas</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECCIÓN CONTACTO Y MAPA (REDISEÑADA) -->
+    <!-- Solución al problema "muy juntos y del mismo tamaño" -->
+    <section id="contacto" class="bg-white relative">
+        <div class="grid lg:grid-cols-5 min-h-[600px]">
+            
+            <!-- Columna INFO (3/5 ancho en desktop) -->
+            <div class="lg:col-span-2 bg-brand-dark text-white p-12 lg:p-20 flex flex-col justify-center relative z-10">
+                <div class="border-l-2 border-brand-gold pl-8 mb-12">
+                    <h2 class="font-serif text-4xl lg:text-5xl mb-4">Visítanos</h2>
+                    <p class="text-gray-400 font-light text-lg">Tu historia comienza aquí.</p>
+                </div>
+
+                <div class="space-y-10">
+                    <div class="flex gap-6 items-start">
+                        <i class="ph-thin ph-map-pin text-3xl text-brand-gold"></i>
                         <div>
-                            <h3 class="font-serif text-xl font-bold text-cruz-dark">Estado del Rancho</h3>
-                            <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Información en tiempo real</p>
-                        </div>
-                        <!-- Indicador Ping -->
-                        <div class="relative flex h-3 w-3">
-                            <span id="status-ping" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                            <span id="status-light" class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                            <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Dirección Exacta</p>
+                            <p class="text-xl font-serif">2375 Case Rd</p>
+                            <p class="text-gray-400">LaBelle, FL 33935</p>
                         </div>
                     </div>
 
-                    <div class="p-6 space-y-6">
-                        <!-- Estado Abierto/Cerrado -->
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-full bg-cruz-cream border border-cruz-gold/30 flex items-center justify-center text-cruz-gold text-2xl">
-                                <i class="ph-fill ph-storefront"></i>
-                            </div>
-                            <div>
-                                <p id="status-text" class="text-lg font-bold text-emerald-700 leading-tight">Consultando...</p>
-                                <p class="text-xs text-gray-500">Horario hoy: 08:00 - 20:00</p>
-                            </div>
+                    <div class="flex gap-6 items-start">
+                        <i class="ph-thin ph-clock text-3xl text-brand-gold"></i>
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Horarios</p>
+                            <p class="text-xl font-serif">Lunes - Domingo</p>
+                            <p class="text-brand-gold">08:00 AM - 08:00 PM</p>
                         </div>
+                    </div>
 
-                        <hr class="border-gray-200">
-
-                        <!-- Widget Clima (API Real) -->
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-4">
-                                <!-- Icono dinámico clima -->
-                                <div id="weather-icon-container" class="text-4xl text-sky-600 drop-shadow-sm">
-                                    <i class="ph-duotone ph-cloud-sun"></i>
-                                </div>
-                                <div>
-                                    <p id="weather-temp" class="text-3xl font-serif font-bold text-cruz-dark">--°F</p>
-                                    <p id="weather-desc" class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Cargando clima...</p>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <span class="text-[10px] font-bold bg-sky-100 text-sky-700 px-2 py-1 rounded border border-sky-200">LIVE</span>
-                            </div>
-                        </div>
-
-                        <!-- Botón Mapa -->
-                        <a href="https://maps.app.goo.gl/SjYpwLxx4QfDUqvo9" target="_blank" class="block w-full text-center py-3 rounded bg-cruz-dark text-cruz-gold text-xs font-bold uppercase tracking-widest hover:bg-gray-800 transition-colors">
-                            <i class="ph-bold ph-map-pin mr-1"></i> Ir con GPS
+                    <div class="pt-8">
+                        <a href="https://maps.app.goo.gl/SjYpwLxx4QfDUqvo9" target="_blank" class="inline-block border border-white/20 hover:bg-white hover:text-black transition-all px-8 py-4 text-xs font-bold tracking-widest uppercase">
+                            Abrir GPS
                         </a>
                     </div>
                 </div>
             </div>
 
-        </div>
-    </header>
-
-    <!-- GALERÍA PRO -->
-    <section id="galeria" class="py-24 bg-white relative">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="text-cruz-gold tracking-[0.2em] uppercase text-xs font-bold">Nuestros Clientes</span>
-                <h2 class="font-serif text-4xl md:text-5xl text-cruz-dark mt-2 font-medium">Momentos Mágicos</h2>
-                <div class="w-24 h-1 bg-cruz-gold mx-auto mt-6"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-1 md:gap-6 auto-rows-[300px] md:auto-rows-[400px]">
-                
-                <!-- Foto Grande 1 (Vertical) -->
-                <div class="group relative overflow-hidden md:row-span-2 rounded-sm shadow-xl" data-aos="fade-up" data-aos-delay="100">
-                    <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/cliente3.jpg" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
-                        <span class="text-cruz-gold font-serif italic text-2xl">Quinceañera</span>
-                    </div>
-                </div>
-
-                <!-- Foto 2 -->
-                <div class="group relative overflow-hidden rounded-sm shadow-xl" data-aos="fade-up" data-aos-delay="200">
-                    <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/cliente1.jpg" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
-                </div>
-
-                <!-- Foto 3 -->
-                <div class="group relative overflow-hidden rounded-sm shadow-xl" data-aos="fade-up" data-aos-delay="300">
-                    <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/cliente2.jpg" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
-                </div>
-
-                <!-- Foto 4 (Wide) -->
-                <div class="group relative overflow-hidden md:col-span-2 rounded-sm shadow-xl" data-aos="fade-up" data-aos-delay="400">
-                    <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/cliente4.jpg" class="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
-                        <span class="text-cruz-gold font-serif italic text-2xl">Vestidos de Gala</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- UBICACIÓN Y MAPA -->
-    <section id="ubicacion" class="py-20 bg-cruz-cream border-t border-cruz-gold/20">
-        <div class="container mx-auto px-4">
-            <div class="bg-white shadow-2xl rounded-sm overflow-hidden grid lg:grid-cols-2">
-                
-                <!-- Info -->
-                <div class="p-10 lg:p-16 flex flex-col justify-center">
-                    <h3 class="font-serif text-3xl text-cruz-dark mb-2">Encuéntranos</h3>
-                    <p class="text-gray-500 mb-8 italic">Donde comienza tu historia.</p>
-
-                    <ul class="space-y-8">
-                        <li class="flex items-start gap-5">
-                            <div class="w-12 h-12 bg-cruz-cream text-cruz-gold flex items-center justify-center text-2xl border border-cruz-gold/20 rounded-full shrink-0">
-                                <i class="ph-fill ph-map-pin"></i>
-                            </div>
-                            <div>
-                                <strong class="block text-cruz-dark uppercase tracking-widest text-xs mb-1">Dirección Exacta</strong>
-                                <a href="https://maps.app.goo.gl/SjYpwLxx4QfDUqvo9" target="_blank" class="text-lg text-gray-700 hover:text-cruz-gold transition-colors">
-                                    2375 Case Rd,<br> LaBelle, FL 33935
-                                </a>
-                            </div>
-                        </li>
-
-                        <li class="flex items-start gap-5">
-                            <div class="w-12 h-12 bg-cruz-cream text-cruz-gold flex items-center justify-center text-2xl border border-cruz-gold/20 rounded-full shrink-0">
-                                <i class="ph-fill ph-clock"></i>
-                            </div>
-                            <div>
-                                <strong class="block text-cruz-dark uppercase tracking-widest text-xs mb-1">Horario de Atención</strong>
-                                <p class="text-gray-700">Lunes a Domingo</p>
-                                <p class="text-cruz-gold font-bold text-lg">08:00 AM - 08:00 PM</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Google Map Corregido -->
-                <div class="h-[400px] lg:h-auto bg-gray-200 relative group">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3567.8931140938475!2d-81.43981292367184!3d26.755866176740627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88db907d47220261%3A0xc392842416b73a24!2sRancho%20Cruz!5e0!3m2!1ses!2sus!4v1707500000000!5m2!1ses!2sus"
-                        width="100%" 
-                        height="100%" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade"
-                        class="grayscale group-hover:grayscale-0 transition-all duration-700">
-                    </iframe>
-                    <!-- Overlay texto -->
-                    <div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur px-4 py-2 text-xs font-bold shadow-lg rounded">
-                        <i class="ph-fill ph-navigation-arrow text-cruz-gold"></i> 2375 Case Rd
+            <!-- Columna MAPA (Full Width visualmente en mobile, lado derecho en desktop) -->
+            <div class="lg:col-span-3 relative h-[400px] lg:h-auto map-container bg-gray-200">
+                <!-- IFRAME CORREGIDO: Apunta exactamente a la dirección -->
+                <iframe 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0" 
+                    loading="lazy" 
+                    allowfullscreen
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3567.8931140938475!2d-81.43981292367184!3d26.755866176740627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88db907d47220261%3A0xc392842416b73a24!2sRancho%20Cruz!5e0!3m2!1ses!2sus!4v1707500000000!5m2!1ses!2sus">
+                </iframe>
+                <!-- Pin decorativo overlay (opcional, visual only) -->
+                <div class="absolute bottom-10 left-10 bg-white p-4 shadow-2xl rounded-lg hidden md:block">
+                    <p class="text-xs font-bold uppercase text-brand-dark">Rancho Cruz</p>
+                    <div class="flex text-amber-500 text-xs gap-1 mt-1">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
                     </div>
                 </div>
             </div>
@@ -289,109 +245,72 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-cruz-dark text-white py-12 text-center border-t border-gray-800">
-        <div class="flex items-center justify-center gap-3 mb-6">
-            <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/logo%20de%20su%20marca.jpg" class="w-10 h-10 rounded-full border border-gray-600">
-            <span class="font-serif text-xl tracking-widest">RANCHO CRUZ</span>
-        </div>
-        <p class="text-gray-500 text-sm mb-6">&copy; 2026 Todos los derechos reservados.</p>
-        <div class="flex justify-center gap-6 text-2xl text-cruz-gold">
-            <a href="#" class="hover:text-white transition-colors"><i class="ph-fill ph-instagram-logo"></i></a>
-            <a href="#" class="hover:text-white transition-colors"><i class="ph-fill ph-facebook-logo"></i></a>
-            <a href="#" class="hover:text-white transition-colors"><i class="ph-fill ph-tiktok-logo"></i></a>
+    <footer class="bg-brand-dark text-white border-t border-white/10 pt-16 pb-8 text-center">
+        <div class="container mx-auto px-6">
+            <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/logo%20de%20su%20marca.jpg" class="h-16 w-16 rounded-full mx-auto mb-6 border-2 border-brand-gold opacity-80">
+            <h2 class="font-serif text-2xl tracking-widest mb-8">RANCHO CRUZ</h2>
+            
+            <div class="flex justify-center gap-8 text-gray-400 mb-12">
+                <a href="#" class="hover:text-white transition-colors"><i class="ph-fill ph-instagram-logo text-2xl"></i></a>
+                <a href="#" class="hover:text-white transition-colors"><i class="ph-fill ph-facebook-logo text-2xl"></i></a>
+                <a href="#" class="hover:text-white transition-colors"><i class="ph-fill ph-tiktok-logo text-2xl"></i></a>
+            </div>
+
+            <p class="text-xs text-gray-600 uppercase tracking-widest">&copy; 2026 Rancho Cruz Venue. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- LOGICA JAVASCRIPT -->
+    <!-- SCRIPTS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // 1. Inicializar animaciones
-        AOS.init({ once: true, offset: 50, duration: 800 });
+        AOS.init({ duration: 1000, once: true });
 
-        // 2. Navbar Sticky Effect
+        // NAVBAR SCROLL
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('bg-cruz-dark/95', 'shadow-lg', 'py-3');
-                nav.classList.remove('bg-transparent', 'py-4', 'border-white/10');
-            } else {
-                nav.classList.remove('bg-cruz-dark/95', 'shadow-lg', 'py-3');
-                nav.classList.add('bg-transparent', 'py-4', 'border-white/10');
-            }
+            if (window.scrollY > 50) nav.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+            else nav.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
         });
 
-        // 3. Lógica Estado (Abierto/Cerrado)
-        function checkStatus() {
-            // Hora Florida (UTC-5 / UTC-4)
+        // LOGICA ESTADO & CLIMA
+        async function updateWidget() {
+            // 1. Estado Abierto/Cerrado (Hora FL)
             const now = new Date();
-            const options = { timeZone: "America/New_York", hour: 'numeric', hour12: false };
-            const flHour = parseInt(new Intl.DateTimeFormat('en-US', options).format(now));
+            const flTime = new Date(now.toLocaleString("en-US", {timeZone: "America/New_York"}));
+            const hour = flTime.getHours();
             
-            // Horario: 8am - 8pm (20:00)
-            const isOpen = flHour >= 8 && flHour < 20;
-
-            const light = document.getElementById('status-light');
-            const ping = document.getElementById('status-ping');
-            const text = document.getElementById('status-text');
-
-            if(isOpen) {
-                text.innerText = "Estamos Abiertos";
-                text.className = "text-lg font-bold text-emerald-600 leading-tight";
-                light.className = "relative inline-flex rounded-full h-3 w-3 bg-emerald-500";
-                ping.className = "animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75";
+            const statusText = document.getElementById('status-text');
+            const statusInd = document.getElementById('status-indicator');
+            
+            if (hour >= 8 && hour < 20) {
+                statusText.innerText = "Abierto Ahora";
+                statusText.className = "font-serif text-2xl font-bold mt-1 text-emerald-700";
+                statusInd.className = "w-3 h-3 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_10px_#10b981]";
             } else {
-                text.innerText = "Cerrado Ahora";
-                text.className = "text-lg font-bold text-red-500 leading-tight";
-                light.className = "relative inline-flex rounded-full h-3 w-3 bg-red-500";
-                ping.className = "hidden"; // No ping cuando está cerrado
+                statusText.innerText = "Cerrado";
+                statusText.className = "font-serif text-2xl font-bold mt-1 text-red-700";
+                statusInd.className = "w-3 h-3 rounded-full bg-red-500";
             }
-        }
 
-        // 4. Widget Clima (Open-Meteo API - No Key needed)
-        async function fetchWeather() {
+            // 2. Clima API
             try {
-                // Coordenadas LaBelle, FL
-                const lat = 26.7559;
-                const lon = -81.4398;
-                const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&temperature_unit=fahrenheit`;
-
-                const response = await fetch(url);
-                const data = await response.json();
+                const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=26.7559&longitude=-81.4398&current=temperature_2m,weather_code&temperature_unit=fahrenheit');
+                const data = await res.json();
                 
-                const temp = Math.round(data.current.temperature_2m);
+                document.getElementById('weather-temp').innerText = Math.round(data.current.temperature_2m) + "°F";
+                
                 const code = data.current.weather_code;
+                const iconDiv = document.getElementById('weather-icon');
                 
-                // Mapeo simple de códigos WMO a Iconos/Texto
-                let iconClass = "ph-duotone ph-sun";
-                let descText = "Soleado";
-                let iconColor = "text-amber-500";
-
-                // Códigos WMO: 0=Sol, 1-3=Nublado, 50+=Lluvia/Tormenta
-                if(code > 0 && code <= 3) {
-                    iconClass = "ph-duotone ph-cloud-sun";
-                    descText = "Parcialmente Nublado";
-                    iconColor = "text-sky-500";
-                } else if (code > 3) {
-                    iconClass = "ph-duotone ph-cloud-rain";
-                    descText = "Posible Lluvia";
-                    iconColor = "text-slate-500";
-                }
-
-                // Actualizar DOM
-                document.getElementById('weather-temp').innerText = `${temp}°F`;
-                document.getElementById('weather-desc').innerText = descText;
-                document.getElementById('weather-icon-container').innerHTML = `<i class="${iconClass} ${iconColor}"></i>`;
-
-            } catch (error) {
-                console.log("Error clima:", error);
-                document.getElementById('weather-desc').innerText = "LaBelle, FL";
-            }
+                if (code <= 1) iconDiv.innerHTML = '<i class="ph-duotone ph-sun text-amber-500"></i>';
+                else if (code <= 3) iconDiv.innerHTML = '<i class="ph-duotone ph-cloud-sun text-orange-400"></i>';
+                else iconDiv.innerHTML = '<i class="ph-duotone ph-cloud-rain text-blue-400"></i>';
+                
+            } catch (e) { console.log(e); }
         }
 
-        // Ejecutar al cargar
-        checkStatus();
-        fetchWeather();
-        setInterval(checkStatus, 60000); // Revisar estado cada minuto
+        updateWidget();
+        setInterval(updateWidget, 60000);
     </script>
 </body>
 </html>
