@@ -31,8 +31,8 @@
                         'brand-cream': '#F5F5F0',     
                         'brand-stone': '#44403C',
                     },
-                    backgroundImage: {
-                        'texture': "url('https://www.transparenttextures.com/patterns/cream-paper.png')",
+                    screens: {
+                        'xs': '375px', // Ajuste para móviles muy pequeños
                     }
                 }
             }
@@ -40,277 +40,306 @@
     </script>
 
     <style>
-        /* Ajustes finos */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-        }
-        
-        .map-container iframe {
-            filter: grayscale(100%) invert(0%);
-            transition: filter 0.5s ease;
-        }
-        .map-container:hover iframe {
-            filter: grayscale(0%);
+        /* Ajustes Mobile First */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
-        /* Botón animado */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15); /* Más transparente en móvil */
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        
+        /* Botón animado refinado */
         .btn-premium {
             background-size: 200% auto;
-            background-image: linear-gradient(to right, #1C1917 0%, #44403C 51%, #1C1917 100%);
+            background-image: linear-gradient(to right, #1C1917 0%, #C5A059 51%, #1C1917 100%);
             transition: 0.5s;
             color: white;
         }
         .btn-premium:hover {
             background-position: right center;
         }
+
+        /* Menú Móvil Animación */
+        #mobile-menu {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .menu-open {
+            transform: translateX(0) !important;
+        }
     </style>
 </head>
 <body class="bg-brand-cream text-brand-dark antialiased overflow-x-hidden selection:bg-brand-gold selection:text-white">
 
-    <!-- NAVBAR FLOTANTE -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6 px-6 lg:px-12 flex justify-between items-center bg-transparent">
-        <div class="flex items-center gap-3 glass-card px-4 py-2 rounded-full">
+    <!-- NAVBAR OPTIMIZADA (MÓVIL + DESKTOP) -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 px-4 py-3 md:px-8 md:py-4 flex justify-between items-center">
+        
+        <!-- Logo Compacto -->
+        <div class="flex items-center gap-2 md:gap-3 bg-white/90 backdrop-blur-md px-3 py-1.5 md:px-4 md:py-2 rounded-full shadow-sm border border-white/20">
             <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/logo%20de%20su%20marca.jpg" 
-                 class="h-10 w-10 rounded-full object-cover border border-brand-gold">
-            <span class="font-serif text-lg font-bold tracking-widest text-brand-dark hidden md:block">RANCHO CRUZ</span>
+                 class="h-8 w-8 md:h-10 md:w-10 rounded-full object-cover border border-brand-gold">
+            <span class="font-serif text-sm md:text-lg font-bold tracking-widest text-brand-dark">RANCHO CRUZ</span>
         </div>
         
-        <div class="glass-card px-6 py-2 rounded-full hidden md:flex gap-8 text-xs font-bold tracking-[0.2em] uppercase text-brand-stone">
+        <!-- Menú Desktop -->
+        <div class="hidden md:flex bg-white/90 backdrop-blur-md px-6 py-2 rounded-full gap-8 text-xs font-bold tracking-[0.2em] uppercase text-brand-stone shadow-sm">
             <a href="#inicio" class="hover:text-brand-gold transition-colors">Inicio</a>
             <a href="#galeria" class="hover:text-brand-gold transition-colors">Galería</a>
             <a href="#contacto" class="hover:text-brand-gold transition-colors">Visítanos</a>
         </div>
 
-        <a href="https://wa.me/12392983233" class="btn-premium px-6 py-3 rounded-full text-xs font-bold tracking-widest shadow-lg flex items-center gap-2">
-            <i class="ph-bold ph-whatsapp-logo text-lg"></i>
-            <span class="hidden sm:inline">RESERVAR</span>
-        </a>
+        <!-- Botones Derecha -->
+        <div class="flex items-center gap-2">
+            <!-- Botón WhatsApp (Icono solo en móvil) -->
+            <a href="https://wa.me/12392983233" class="btn-premium px-4 py-2 md:px-6 md:py-3 rounded-full text-[10px] md:text-xs font-bold tracking-widest shadow-lg flex items-center gap-2">
+                <i class="ph-bold ph-whatsapp-logo text-lg"></i>
+                <span class="hidden xs:inline">RESERVAR</span>
+            </a>
+
+            <!-- Botón Hamburguesa (Solo Móvil) -->
+            <button id="menu-btn" class="md:hidden bg-white/90 p-2 rounded-full shadow-sm text-brand-dark">
+                <i class="ph-bold ph-list text-xl"></i>
+            </button>
+        </div>
     </nav>
 
-    <!-- HERO SECTION (LIMPIO) -->
-    <header id="inicio" class="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
-        <!-- Fondo Parallax -->
-        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed scale-110" 
+    <!-- MENÚ MÓVIL FULL SCREEN -->
+    <div id="mobile-menu" class="fixed inset-0 bg-brand-dark/95 backdrop-blur-xl z-40 transform translate-x-full flex flex-col justify-center items-center text-white">
+        <button id="close-menu" class="absolute top-6 right-6 text-2xl p-2"><i class="ph-bold ph-x"></i></button>
+        <div class="flex flex-col gap-8 text-center font-serif text-3xl">
+            <a href="#inicio" class="mobile-link hover:text-brand-gold transition-colors">Inicio</a>
+            <a href="#galeria" class="mobile-link hover:text-brand-gold transition-colors">Galería</a>
+            <a href="#contacto" class="mobile-link hover:text-brand-gold transition-colors">Ubicación</a>
+        </div>
+        <div class="mt-12 flex gap-6 text-brand-gold text-2xl">
+            <a href="#"><i class="ph-fill ph-instagram-logo"></i></a>
+            <a href="#"><i class="ph-fill ph-facebook-logo"></i></a>
+        </div>
+    </div>
+
+    <!-- HERO SECTION (Diseño Compacto) -->
+    <header id="inicio" class="relative h-[100svh] flex items-center justify-center overflow-hidden">
+        <!-- Fondo -->
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" 
              style="background-image: url('https://raw.githubusercontent.com/Enviado98/ranchocruz/main/local.jpg');">
         </div>
-        <div class="absolute inset-0 bg-black/40"></div>
+        <div class="absolute inset-0 bg-black/30 md:bg-black/40"></div> <!-- Menos oscuro en móvil -->
 
-        <div class="relative z-10 container mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center mt-20">
+        <div class="relative z-10 container mx-auto px-4 md:px-6 flex flex-col justify-center h-full pt-16">
             
             <!-- Texto Principal -->
-            <div class="lg:col-span-7 text-white" data-aos="fade-up">
-                <p class="text-brand-gold font-bold tracking-[0.4em] uppercase text-xs mb-4 pl-1">LaBelle, Florida</p>
-                <h1 class="font-serif text-6xl md:text-8xl leading-tight mb-8">
-                    Donde la naturaleza <br>
-                    <span class="italic font-light opacity-90">abraza la elegancia.</span>
+            <div class="text-white text-center md:text-left md:max-w-3xl" data-aos="fade-up">
+                <div class="inline-block border border-white/30 px-3 py-1 rounded-full bg-black/20 backdrop-blur-sm mb-4">
+                    <p class="text-brand-gold font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs">LaBelle, Florida</p>
+                </div>
+                
+                <!-- Tipografía Responsiva Ajustada -->
+                <h1 class="font-serif text-5xl xs:text-6xl md:text-8xl leading-[1.1] mb-4 md:mb-6 drop-shadow-lg">
+                    Rustic <br>
+                    <span class="italic font-light text-brand-gold">Elegance.</span>
                 </h1>
-                <p class="text-lg text-gray-200 font-light max-w-lg leading-relaxed mb-10 border-l border-brand-gold pl-6">
-                    El escenario rústico definitivo. Caballos, graneros de madera y atardeceres dorados para tus momentos más importantes.
+                
+                <p class="text-sm md:text-lg text-gray-100 font-light max-w-sm mx-auto md:mx-0 leading-relaxed mb-8 md:border-l md:border-brand-gold md:pl-6 drop-shadow-md">
+                    El escenario perfecto. Caballos, naturaleza y atardeceres dorados para tus momentos inolvidables.
                 </p>
             </div>
 
-            <!-- Widget Flotante (Glass) -->
-            <div class="lg:col-span-5" data-aos="zoom-in" data-aos-delay="200">
-                <div class="glass-card rounded-2xl p-6 text-brand-dark max-w-sm mx-auto ml-auto transform rotate-1 hover:rotate-0 transition-transform duration-500">
-                    <div class="flex justify-between items-start mb-6">
-                        <div>
-                            <p class="text-xs font-bold uppercase tracking-widest text-gray-500">Estado Actual</p>
-                            <h3 id="status-text" class="font-serif text-2xl font-bold mt-1">Verificando...</h3>
+            <!-- Widget Clima (Versión Móvil: Barra Compacta / Versión PC: Card) -->
+            <div class="mt-auto mb-8 md:mt-0 md:absolute md:bottom-20 md:right-20" data-aos="fade-in" data-aos-delay="300">
+                <div class="glass-card rounded-xl p-3 md:p-5 flex items-center gap-3 md:gap-4 max-w-[280px] mx-auto md:mx-0">
+                    <div id="weather-icon" class="text-2xl md:text-4xl text-white"><i class="ph-duotone ph-spinner animate-spin"></i></div>
+                    <div class="text-left">
+                        <div class="flex items-center gap-2">
+                            <span id="status-indicator" class="w-2 h-2 rounded-full bg-gray-400"></span>
+                            <p id="status-text" class="text-xs md:text-sm font-bold text-white uppercase tracking-wider">Cargando...</p>
                         </div>
-                        <span id="status-indicator" class="w-3 h-3 rounded-full bg-gray-300"></span>
-                    </div>
-                    
-                    <div class="flex items-center gap-4 border-t border-gray-200 pt-4">
-                        <div id="weather-icon" class="text-4xl text-brand-gold"><i class="ph-duotone ph-cloud"></i></div>
-                        <div>
-                            <p id="weather-temp" class="text-3xl font-bold">--°F</p>
-                            <p id="weather-desc" class="text-xs text-gray-500 uppercase font-bold">LaBelle, FL</p>
-                        </div>
+                        <p id="weather-temp" class="text-sm md:text-base text-gray-200">Verificando clima...</p>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- GALERÍA MOSAICO (ARREGLADA) -->
-    <section id="galeria" class="py-32 px-4 md:px-8 max-w-[1600px] mx-auto">
-        <div class="text-center mb-20" data-aos="fade-up">
-            <span class="text-brand-gold tracking-[0.3em] uppercase text-xs font-bold">Portfolio</span>
-            <h2 class="font-serif text-5xl text-brand-dark mt-4">Memorias Eternas</h2>
+    <!-- GALERÍA (Grid Móvil Ajustado) -->
+    <section id="galeria" class="py-16 md:py-24 px-4 bg-white">
+        <div class="text-center mb-10 md:mb-16" data-aos="fade-up">
+            <span class="text-brand-gold tracking-[0.3em] uppercase text-[10px] font-bold">Nuestro Trabajo</span>
+            <h2 class="font-serif text-3xl md:text-5xl text-brand-dark mt-2">Momentos Reales</h2>
         </div>
 
-        <!-- Grid Asimétrico: No más fotos una debajo de otra aburridas -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[300px]">
+        <!-- Grid Responsivo: 1 col móvil, 2 col tablet, 4 col desktop -->
+        <div class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 auto-rows-[250px] md:auto-rows-[300px]">
             
-            <!-- Foto 1 (Vertical Grande) -->
-            <div class="sm:col-span-1 lg:row-span-2 group relative rounded-xl overflow-hidden shadow-lg cursor-pointer" data-aos="fade-up">
+            <!-- Foto 1 (Vertical) -->
+            <div class="xs:row-span-2 group relative rounded-lg overflow-hidden shadow-md cursor-pointer" data-aos="fade-up">
                 <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/cliente3.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex items-end">
-                    <p class="text-white font-serif italic text-xl">Quinceañeras</p>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
+                    <p class="text-white font-serif italic text-sm md:text-xl">Quinceañeras</p>
                 </div>
             </div>
 
-            <!-- Foto 2 (Horizontal) -->
-            <div class="sm:col-span-1 group relative rounded-xl overflow-hidden shadow-lg cursor-pointer" data-aos="fade-up" data-aos-delay="100">
+            <!-- Foto 2 -->
+            <div class="group relative rounded-lg overflow-hidden shadow-md cursor-pointer" data-aos="fade-up" data-aos-delay="100">
                 <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/cliente1.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
             </div>
 
-            <!-- Foto 3 (Horizontal) -->
-            <div class="sm:col-span-1 group relative rounded-xl overflow-hidden shadow-lg cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+            <!-- Foto 3 -->
+            <div class="group relative rounded-lg overflow-hidden shadow-md cursor-pointer" data-aos="fade-up" data-aos-delay="200">
                 <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/cliente2.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
             </div>
 
-            <!-- Foto 4 (Vertical Pequeña o Grande según espacio) -->
-            <div class="sm:col-span-1 lg:row-span-2 group relative rounded-xl overflow-hidden shadow-lg cursor-pointer" data-aos="fade-up" data-aos-delay="300">
-                <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/fondo.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex items-end">
-                    <p class="text-white font-serif italic text-xl">El Rancho</p>
+            <!-- Foto 4 (Grande) -->
+            <div class="xs:col-span-2 xs:row-span-1 md:row-span-2 group relative rounded-lg overflow-hidden shadow-md cursor-pointer" data-aos="fade-up" data-aos-delay="300">
+                <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/cliente4.jpg" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
+                    <p class="text-white font-serif italic text-sm md:text-xl">Sesiones Temáticas</p>
                 </div>
             </div>
-
-            <!-- Foto 5 (Wide) -->
-            <div class="sm:col-span-2 group relative rounded-xl overflow-hidden shadow-lg cursor-pointer" data-aos="fade-up">
-                <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/cliente4.jpg" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex items-end">
-                    <p class="text-white font-serif italic text-xl">Sesiones Temáticas</p>
-                </div>
+            
+            <!-- Foto 5 (Relleno extra para móvil) -->
+            <div class="xs:col-span-2 md:col-span-1 group relative rounded-lg overflow-hidden shadow-md cursor-pointer" data-aos="fade-up">
+                <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/fondo.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
             </div>
 
         </div>
     </section>
 
-    <!-- SECCIÓN CONTACTO Y MAPA (REDISEÑADA) -->
-    <!-- Solución al problema "muy juntos y del mismo tamaño" -->
-    <section id="contacto" class="bg-white relative">
-        <div class="grid lg:grid-cols-5 min-h-[600px]">
+    <!-- CONTACTO (Diseño Vertical para Móvil) -->
+    <section id="contacto" class="bg-brand-cream relative">
+        <div class="flex flex-col lg:flex-row">
             
-            <!-- Columna INFO (3/5 ancho en desktop) -->
-            <div class="lg:col-span-2 bg-brand-dark text-white p-12 lg:p-20 flex flex-col justify-center relative z-10">
-                <div class="border-l-2 border-brand-gold pl-8 mb-12">
-                    <h2 class="font-serif text-4xl lg:text-5xl mb-4">Visítanos</h2>
-                    <p class="text-gray-400 font-light text-lg">Tu historia comienza aquí.</p>
+            <!-- Columna INFO -->
+            <div class="lg:w-2/5 bg-brand-dark text-white p-8 md:p-16 flex flex-col justify-center order-2 lg:order-1">
+                <div class="mb-8">
+                    <span class="text-brand-gold text-[10px] font-bold uppercase tracking-[0.2em]">Contacto</span>
+                    <h2 class="font-serif text-3xl md:text-4xl mt-2">Visítanos</h2>
                 </div>
 
-                <div class="space-y-10">
-                    <div class="flex gap-6 items-start">
-                        <i class="ph-thin ph-map-pin text-3xl text-brand-gold"></i>
+                <div class="space-y-8 text-sm md:text-base">
+                    <div class="flex gap-4 items-start">
+                        <div class="p-2 bg-white/10 rounded-full text-brand-gold"><i class="ph-fill ph-map-pin"></i></div>
                         <div>
-                            <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Dirección Exacta</p>
-                            <p class="text-xl font-serif">2375 Case Rd</p>
+                            <p class="font-bold text-gray-200">2375 Case Rd</p>
                             <p class="text-gray-400">LaBelle, FL 33935</p>
                         </div>
                     </div>
 
-                    <div class="flex gap-6 items-start">
-                        <i class="ph-thin ph-clock text-3xl text-brand-gold"></i>
+                    <div class="flex gap-4 items-start">
+                        <div class="p-2 bg-white/10 rounded-full text-brand-gold"><i class="ph-fill ph-clock"></i></div>
                         <div>
-                            <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Horarios</p>
-                            <p class="text-xl font-serif">Lunes - Domingo</p>
+                            <p class="font-bold text-gray-200">Lunes - Domingo</p>
                             <p class="text-brand-gold">08:00 AM - 08:00 PM</p>
                         </div>
                     </div>
+                </div>
 
-                    <div class="pt-8">
-                        <a href="https://maps.app.goo.gl/SjYpwLxx4QfDUqvo9" target="_blank" class="inline-block border border-white/20 hover:bg-white hover:text-black transition-all px-8 py-4 text-xs font-bold tracking-widest uppercase">
-                            Abrir GPS
-                        </a>
-                    </div>
+                <div class="mt-8 pt-8 border-t border-white/10">
+                     <a href="https://maps.app.goo.gl/SjYpwLxx4QfDUqvo9" target="_blank" class="w-full md:w-auto inline-flex justify-center items-center gap-2 bg-white text-brand-dark px-6 py-3 rounded text-xs font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors">
+                        <i class="ph-bold ph-navigation-arrow"></i> Abrir en GPS
+                    </a>
                 </div>
             </div>
 
-            <!-- Columna MAPA (Full Width visualmente en mobile, lado derecho en desktop) -->
-            <div class="lg:col-span-3 relative h-[400px] lg:h-auto map-container bg-gray-200">
-                <!-- IFRAME CORREGIDO: Apunta exactamente a la dirección -->
+            <!-- Columna MAPA -->
+            <div class="lg:w-3/5 h-[300px] md:h-[450px] lg:h-auto bg-gray-200 order-1 lg:order-2 relative">
                 <iframe 
                     width="100%" 
                     height="100%" 
                     style="border:0" 
                     loading="lazy" 
                     allowfullscreen
-                    referrerpolicy="no-referrer-when-downgrade"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3567.8931140938475!2d-81.43981292367184!3d26.755866176740627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88db907d47220261%3A0xc392842416b73a24!2sRancho%20Cruz!5e0!3m2!1ses!2sus!4v1707500000000!5m2!1ses!2sus">
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3567.8931140938475!2d-81.43981292367184!3d26.755866176740627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88db907d47220261%3A0xc392842416b73a24!2sRancho%20Cruz!5e0!3m2!1ses!2sus">
                 </iframe>
-                <!-- Pin decorativo overlay (opcional, visual only) -->
-                <div class="absolute bottom-10 left-10 bg-white p-4 shadow-2xl rounded-lg hidden md:block">
-                    <p class="text-xs font-bold uppercase text-brand-dark">Rancho Cruz</p>
-                    <div class="flex text-amber-500 text-xs gap-1 mt-1">
-                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
-                    </div>
-                </div>
+                <!-- Sombra interior para suavizar bordes en móvil -->
+                <div class="absolute inset-0 pointer-events-none shadow-[inset_0_0_20px_rgba(0,0,0,0.1)]"></div>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-brand-dark text-white border-t border-white/10 pt-16 pb-8 text-center">
-        <div class="container mx-auto px-6">
-            <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/logo%20de%20su%20marca.jpg" class="h-16 w-16 rounded-full mx-auto mb-6 border-2 border-brand-gold opacity-80">
-            <h2 class="font-serif text-2xl tracking-widest mb-8">RANCHO CRUZ</h2>
+    <footer class="bg-brand-dark text-white border-t border-white/10 py-12 text-center">
+        <div class="container mx-auto px-4">
+            <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/logo%20de%20su%20marca.jpg" class="h-12 w-12 rounded-full mx-auto mb-4 border border-brand-gold/50 opacity-90">
+            <h2 class="font-serif text-xl tracking-widest mb-6">RANCHO CRUZ</h2>
             
-            <div class="flex justify-center gap-8 text-gray-400 mb-12">
-                <a href="#" class="hover:text-white transition-colors"><i class="ph-fill ph-instagram-logo text-2xl"></i></a>
-                <a href="#" class="hover:text-white transition-colors"><i class="ph-fill ph-facebook-logo text-2xl"></i></a>
-                <a href="#" class="hover:text-white transition-colors"><i class="ph-fill ph-tiktok-logo text-2xl"></i></a>
+            <div class="flex justify-center gap-6 text-gray-400 mb-8 text-2xl">
+                <a href="#" class="hover:text-brand-gold transition-colors"><i class="ph-fill ph-instagram-logo"></i></a>
+                <a href="#" class="hover:text-brand-gold transition-colors"><i class="ph-fill ph-facebook-logo"></i></a>
             </div>
 
-            <p class="text-xs text-gray-600 uppercase tracking-widest">&copy; 2026 Rancho Cruz Venue. All rights reserved.</p>
+            <p class="text-[10px] text-gray-600 uppercase tracking-widest">&copy; 2026 Rancho Cruz Venue. LaBelle, FL.</p>
         </div>
     </footer>
 
     <!-- SCRIPTS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
+        AOS.init({ duration: 800, once: true });
 
         // NAVBAR SCROLL
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) nav.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
-            else nav.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+            if (window.scrollY > 10) nav.classList.add('glass-nav');
+            else nav.classList.remove('glass-nav');
+        });
+
+        // MENÚ MÓVIL (TOGGLE)
+        const menuBtn = document.getElementById('menu-btn');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('menu-open');
+            document.body.classList.toggle('overflow-hidden'); // Evita scroll cuando menú está abierto
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        closeMenu.addEventListener('click', toggleMenu);
+        
+        // Cerrar menú al hacer click en un enlace
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
         });
 
         // LOGICA ESTADO & CLIMA
         async function updateWidget() {
-            // 1. Estado Abierto/Cerrado (Hora FL)
+            // 1. Estado
             const now = new Date();
             const flTime = new Date(now.toLocaleString("en-US", {timeZone: "America/New_York"}));
             const hour = flTime.getHours();
             
             const statusText = document.getElementById('status-text');
             const statusInd = document.getElementById('status-indicator');
+            const isOpen = hour >= 8 && hour < 20;
             
-            if (hour >= 8 && hour < 20) {
-                statusText.innerText = "Abierto Ahora";
-                statusText.className = "font-serif text-2xl font-bold mt-1 text-emerald-700";
-                statusInd.className = "w-3 h-3 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_10px_#10b981]";
-            } else {
-                statusText.innerText = "Cerrado";
-                statusText.className = "font-serif text-2xl font-bold mt-1 text-red-700";
-                statusInd.className = "w-3 h-3 rounded-full bg-red-500";
-            }
+            statusText.innerText = isOpen ? "ABIERTO AHORA" : "CERRADO";
+            statusInd.className = isOpen ? "w-2 h-2 rounded-full bg-emerald-400 animate-pulse" : "w-2 h-2 rounded-full bg-red-400";
 
-            // 2. Clima API
+            // 2. Clima
             try {
                 const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=26.7559&longitude=-81.4398&current=temperature_2m,weather_code&temperature_unit=fahrenheit');
                 const data = await res.json();
                 
-                document.getElementById('weather-temp').innerText = Math.round(data.current.temperature_2m) + "°F";
-                
+                const temp = Math.round(data.current.temperature_2m);
                 const code = data.current.weather_code;
-                const iconDiv = document.getElementById('weather-icon');
                 
-                if (code <= 1) iconDiv.innerHTML = '<i class="ph-duotone ph-sun text-amber-500"></i>';
-                else if (code <= 3) iconDiv.innerHTML = '<i class="ph-duotone ph-cloud-sun text-orange-400"></i>';
-                else iconDiv.innerHTML = '<i class="ph-duotone ph-cloud-rain text-blue-400"></i>';
+                document.getElementById('weather-temp').innerText = `${temp}°F en LaBelle`;
+                
+                const iconDiv = document.getElementById('weather-icon');
+                if (code <= 1) iconDiv.innerHTML = '<i class="ph-duotone ph-sun text-amber-400"></i>';
+                else if (code <= 3) iconDiv.innerHTML = '<i class="ph-duotone ph-cloud-sun text-white"></i>';
+                else iconDiv.innerHTML = '<i class="ph-duotone ph-cloud-rain text-blue-300"></i>';
                 
             } catch (e) { console.log(e); }
         }
 
         updateWidget();
-        setInterval(updateWidget, 60000);
     </script>
 </body>
 </html>
