@@ -1,1 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rancho Cruz | Fotografía & Eventos Exclusivos</title>
+    <meta name="description" content="El escenario rústico perfecto para tus sesiones de fotos, Quinceañeras y eventos en LaBelle, FL.">
 
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Librería de Animaciones (AOS) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Fuentes: Playfair Display (Elegancia) & Lato (Modernidad) -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Iconos -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Lato', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        'cruz-gold': '#C5A059',      /* Dorado elegante */
+                        'cruz-dark': '#1C1917',      /* Negro suave */
+                        'cruz-wood': '#5D4037',      /* Marrón madera */
+                        'cruz-cream': '#F9F7F2',     /* Crema fondo */
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Efecto Parallax suave */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        /* Ajuste de scroll */
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-cruz-cream text-gray-800 antialiased overflow-x-hidden">
+
+    <!-- NAV BAR -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 px-6 lg:px-12 flex justify-between items-center bg-transparent text-white">
+        <div class="flex items-center gap-3">
+            <!-- Logo Circular -->
+            <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/logo%20de%20su%20marca.jpg" 
+                 alt="Rancho Cruz Logo" 
+                 class="h-12 w-12 md:h-14 md:w-14 rounded-full border-2 border-cruz-gold shadow-lg object-cover">
+            <span class="font-serif text-xl md:text-2xl font-bold tracking-wider text-cruz-gold drop-shadow-md">RANCHO CRUZ</span>
+        </div>
+        
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex gap-8 text-sm font-bold tracking-widest uppercase">
+            <a href="#inicio" class="hover:text-cruz-gold transition-colors">Inicio</a>
+            <a href="#experiencia" class="hover:text-cruz-gold transition-colors">El Lugar</a>
+            <a href="#galeria" class="hover:text-cruz-gold transition-colors">Galería</a>
+            <a href="#contacto" class="border border-cruz-gold px-6 py-2 rounded-full hover:bg-cruz-gold hover:text-white transition-all">Reservar</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="md:hidden text-2xl" onclick="toggleMenu()">
+            <i class="ph ph-list"></i>
+        </button>
+    </nav>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div id="mobile-menu" class="fixed inset-0 bg-cruz-dark/95 z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 text-white font-serif text-2xl">
+        <button class="absolute top-6 right-6 text-3xl" onclick="toggleMenu()"><i class="ph ph-x"></i></button>
+        <a href="#inicio" onclick="toggleMenu()">Inicio</a>
+        <a href="#experiencia" onclick="toggleMenu()">El Lugar</a>
+        <a href="#galeria" onclick="toggleMenu()">Galería</a>
+        <a href="#contacto" onclick="toggleMenu()" class="text-cruz-gold">Contacto</a>
+    </div>
+
+    <!-- HERO SECTION -->
+    <header id="inicio" class="relative h-screen flex items-center justify-center text-center parallax" 
+            style="background-image: url('https://raw.githubusercontent.com/Enviado98/ranchocruz/main/local.jpg');">
+        
+        <!-- Overlay oscuro para legibilidad -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-cruz-dark/90"></div>
+
+        <div class="relative z-10 px-4" data-aos="fade-up" data-aos-duration="1500">
+            <p class="text-cruz-gold text-sm md:text-base font-bold tracking-[0.3em] uppercase mb-4">LaBelle, Florida</p>
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-white font-medium mb-6 leading-tight">
+                Donde la Magia <br> <span class="italic text-cruz-gold">se hace Eterna</span>
+            </h1>
+            <p class="text-gray-200 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light">
+                El escenario rústico perfecto para sesiones de fotos, quinceañeras y eventos exclusivos. 
+                Naturaleza, elegancia y tradición.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#contacto" class="bg-cruz-gold text-white px-8 py-4 rounded-sm font-bold tracking-widest hover:bg-white hover:text-cruz-dark transition-all duration-300 shadow-lg shadow-cruz-gold/20">
+                    AGENDAR VISITA
+                </a>
+                <a href="#galeria" class="border border-white text-white px-8 py-4 rounded-sm font-bold tracking-widest hover:bg-white/10 transition-all duration-300">
+                    VER GALERÍA
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ABOUT / FEATURES SECTION -->
+    <section id="experiencia" class="py-20 px-6 lg:px-24 bg-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 opacity-5">
+            <i class="ph-fill ph-plant text-9xl"></i>
+        </div>
+
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <div data-aos="fade-right">
+                <div class="inline-block w-20 h-1 bg-cruz-gold mb-6"></div>
+                <h2 class="font-serif text-4xl md:text-5xl text-cruz-dark mb-6">Un Escenario de Ensueño</h2>
+                <p class="text-gray-600 mb-6 leading-relaxed text-lg">
+                    Rancho Cruz no es solo un lugar, es un lienzo para tus recuerdos. Ubicado en el corazón de Florida, ofrecemos un ambiente que combina la calidez del estilo "Barn" con la sofisticación necesaria para resaltar en cada fotografía.
+                </p>
+                
+                <ul class="space-y-4 mt-8">
+                    <li class="flex items-center gap-3">
+                        <span class="bg-cruz-cream p-2 rounded-full text-cruz-gold"><i class="ph-fill ph-horse text-xl"></i></span>
+                        <span class="font-medium text-cruz-dark">Caballos y Naturaleza para fotos únicas</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="bg-cruz-cream p-2 rounded-full text-cruz-gold"><i class="ph-fill ph-camera text-xl"></i></span>
+                        <span class="font-medium text-cruz-dark">Múltiples sets: Granero, Columpios, Lagos</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="bg-cruz-cream p-2 rounded-full text-cruz-gold"><i class="ph-fill ph-dress text-xl"></i></span>
+                        <span class="font-medium text-cruz-dark">Perfecto para Quinceañeras y Bodas</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="relative" data-aos="fade-left">
+                <!-- Marco decorativo -->
+                <div class="absolute inset-0 border-2 border-cruz-gold transform translate-x-4 translate-y-4 z-0"></div>
+                <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/fondo.jpg" class="relative z-10 w-full h-[500px] object-cover shadow-2xl grayscale hover:grayscale-0 transition-all duration-700">
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY GRID -->
+    <section id="galeria" class="py-20 bg-cruz-dark text-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-cruz-gold tracking-widest uppercase text-sm font-bold">Nuestro Portafolio</span>
+                <h2 class="font-serif text-4xl md:text-5xl mt-2">Momentos Capturados</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[400px]">
+                
+                <!-- Item 1 (Vertical) -->
+                <div class="group relative overflow-hidden rounded-sm lg:row-span-2" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/cliente3.jpg" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <p class="text-cruz-gold font-serif text-xl italic">Quinceañera</p>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="group relative overflow-hidden rounded-sm" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/cliente1.jpg" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                </div>
+
+                <!-- Item 3 -->
+                <div class="group relative overflow-hidden rounded-sm" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/cliente2.jpg" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                </div>
+
+                <!-- Item 4 (Wide) -->
+                <div class="group relative overflow-hidden rounded-sm md:col-span-2" data-aos="fade-up" data-aos-delay="400">
+                    <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/cliente4.jpg" class="w-full h-full object-cover object-top transform group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <p class="text-cruz-gold font-serif text-xl italic">Estilo Vaquero</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- INFO & CONTACT -->
+    <section id="contacto" class="relative py-20 bg-cruz-cream">
+        <div class="max-w-6xl mx-auto px-4 grid lg:grid-cols-5 gap-8 bg-white shadow-2xl -mt-32 relative z-20 p-8 md:p-12 rounded-sm">
+            
+            <!-- Texto Info -->
+            <div class="lg:col-span-2 space-y-8">
+                <div>
+                    <h3 class="font-serif text-3xl text-cruz-dark mb-2">Visítanos</h3>
+                    <p class="text-gray-500">Estamos listos para recibirte.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 bg-cruz-cream flex items-center justify-center text-cruz-gold rounded-full shrink-0">
+                            <i class="ph-fill ph-map-pin text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-cruz-dark uppercase text-xs tracking-wider">Dirección</p>
+                            <p class="text-gray-700">2375 Case Rd, LaBelle, FL 33935</p>
+                            <p class="text-gray-500 text-sm">Estados Unidos</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 bg-cruz-cream flex items-center justify-center text-cruz-gold rounded-full shrink-0">
+                            <i class="ph-fill ph-clock text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-cruz-dark uppercase text-xs tracking-wider">Horario</p>
+                            <p class="text-gray-700">Lunes a Domingo</p>
+                            <p class="text-cruz-gold font-bold">08:00 - 20:00</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 bg-cruz-cream flex items-center justify-center text-cruz-gold rounded-full shrink-0">
+                            <i class="ph-fill ph-phone text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-cruz-dark uppercase text-xs tracking-wider">Contacto</p>
+                            <a href="tel:+12392983233" class="text-xl font-serif text-cruz-dark hover:text-cruz-gold transition-colors block">
+                                +1 239-298-3233
+                            </a>
+                            <a href="https://wa.me/12392983233" class="text-sm text-green-600 font-bold mt-1 inline-flex items-center gap-1 hover:underline">
+                                <i class="ph-fill ph-whatsapp-logo"></i> Enviar Mensaje
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mapa -->
+            <div class="lg:col-span-3 h-[400px] lg:h-auto bg-gray-200 rounded-sm overflow-hidden">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3567.8931140938475!2d-81.43981292367184!3d26.755866176740627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88db907d47220261%3A0xc392842416b73a24!2sRancho%20Cruz!5e0!3m2!1ses!2s!4v1707500000000!5m2!1ses!2s" 
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="grayscale hover:grayscale-0 transition-all duration-500"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-cruz-dark text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <img src="https://raw.githubusercontent.com/Enviado98/ranchocruz/main/logo%20de%20su%20marca.jpg" class="h-10 w-10 rounded-full border border-gray-600">
+                <span class="font-serif text-lg text-white">RANCHO CRUZ</span>
+            </div>
+            
+            <div class="text-sm text-center md:text-right">
+                <p>&copy; 2026 Rancho Cruz. Todos los derechos reservados.</p>
+                <p class="mt-1">Diseñado para crear memorias.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Iniciar animaciones
+        AOS.init({
+            once: true,
+            offset: 100,
+        });
+
+        // Sticky Navbar Effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-cruz-dark/95', 'shadow-lg', 'py-2');
+                nav.classList.remove('bg-transparent', 'py-4');
+            } else {
+                nav.classList.remove('bg-cruz-dark/95', 'shadow-lg', 'py-2');
+                nav.classList.add('bg-transparent', 'py-4');
+            }
+        });
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.classList.contains('translate-x-full')) {
+                menu.classList.remove('translate-x-full');
+            } else {
+                menu.classList.add('translate-x-full');
+            }
+        }
+    </script>
+</body>
+</html>
